@@ -7,9 +7,35 @@
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link href="@routes.Assets.at("stylesheets/style.css")" rel="stylesheet" type="text/css">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     </head>
-    <body style="margin-top: 300px;margin-left: 550px;">
-        <h1>@content</h1>
-    </body>
-</html>
+
+<body>
+
+<div id="wrapper"> 
+
+  <div id="header"> 
+
+    <div class="top_banner">
+      <h1>Your First Spark Application in Play</h1>
+      <!--<p>Output is</p>-->
+    </div>
+
+  </div>
+
+  <div id="page_content">
+
+    
+      <div class="common_content">
+        <h2>Output is</h2>
+        <h3>@content</h3>
+        </div>
+
+    <div class="clear"></div>
+    
+    
+  </div>
+
+</div>
+</body></html>
