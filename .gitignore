@@ -17,8 +17,6 @@ bin
 /nbproject/private/
 data/.DS_Store
 
-conf/application.conf
-
 .DS_Store
 
 public/.DS_Store
