@@ -12,4 +12,6 @@ Commands to run this Application:
 3. play dist
 4. play run
 
-Note: Whenever a change is made in the application, then run play dist command otherwise changes in the Spark files/functions will be not be reflected.
+Note: 
+> Whenever a change is made in the application, then run play dist command otherwise changes in the Spark files/functions will be not be reflected.
+> To run only Spark Streaming part you dont need to run command - "play dist".
