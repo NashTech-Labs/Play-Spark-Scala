@@ -35,7 +35,7 @@ object TwitterPopularTags {
       .set("spark.akka.logLifecycleEvents", "true")
 
     val ssc = new StreamingContext(conf, Seconds(2))
-    val filters = Seq("fifa")
+    val filters = Seq("football")
     val stream = TwitterUtils.createStream(ssc, Option(twitter.getAuthorization()), filters)
 
     val hashTags = stream.flatMap(status => status.getText.split(" ").filter(_.startsWith("#")))
