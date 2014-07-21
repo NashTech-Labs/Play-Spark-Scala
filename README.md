@@ -14,6 +14,6 @@ Commands to run this Application:
 
 Note: 
 > Whenever a change is made in the application, then run play dist command otherwise changes in the Spark files/functions will be not be reflected.
-> To run only Spark Streaming or Spark SQL part you dont need to run command - "play dist".
+> To run only Spark Streaming, Spark SQL, Spark MLLib part you dont need to run command - "play dist".
 
-We have upgraded our application to Apache Spark 1.0.0
+We have upgraded our application to Apache Spark 1.0.1.
