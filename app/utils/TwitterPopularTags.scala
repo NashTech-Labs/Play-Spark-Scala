@@ -8,11 +8,13 @@ import play.api.Play
 import org.apache.spark.SparkConf
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
+import scala.collection.immutable.HashMap
 
 object TwitterPopularTags {
 
   def TwitterStreamUtil {
 
+    val data = new HashMap[String, Int]
     // Twitter Authentication credentials
     val consumerKey = Play.current.configuration.getString("consumer_key").get
     val consumerSecret = Play.current.configuration.getString("consumer_secret").get
@@ -35,15 +37,15 @@ object TwitterPopularTags {
       .set("spark.akka.logLifecycleEvents", "true")
 
     val ssc = new StreamingContext(conf, Seconds(2))
-    val filters = Seq("football")
+    val filters = Seq("fifa")
     val stream = TwitterUtils.createStream(ssc, Option(twitter.getAuthorization()), filters)
 
     val hashTags = stream.flatMap(status => status.getText.split(" ").filter(_.startsWith("#")))
-
+    
     val topCounts60 = hashTags.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(60))
       .map { case (topic, count) => (count, topic) }
       .transform(_.sortByKey(false))
-
+          
     val topCounts10 = hashTags.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(10))
       .map { case (topic, count) => (count, topic) }
       .transform(_.sortByKey(false))
