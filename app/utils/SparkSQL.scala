@@ -23,12 +23,11 @@ object SparkSQL {
     
     val sqlContext = new SQLContext(sc)
     
-    import sqlContext._
+    import sqlContext.implicits._
     
-    val wordCount = words.map(word => (word,1)).reduceByKey(_+_).map(wc => WordCount(wc._1, wc._2))
-    wordCount.registerAsTable("wordCount")
+    val wordCount = words.map(word => (word,1)).reduceByKey(_+_).map(wc => WordCount(wc._1, wc._2)).toDF()
     
-    val moreThanTenCounters = wordCount.where('count > 10).select('word)
+    val moreThanTenCounters = wordCount.where(wordCount("count") > 10).select(wordCount("word"))
     
     println("Words occuring more than 10 times are : ")
     moreThanTenCounters.map(mttc => "Word : " + mttc(0)).collect().foreach(println)
